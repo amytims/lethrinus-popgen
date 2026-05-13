@@ -99,6 +99,6 @@ singularity exec \
     docker://quay.io/biocontainers/trimmomatic:0.40--hdfd78af_0 \
 	trimmomatic PE $file1 $file2 $out1 $out1se $out2 $out2se \
 	ILLUMINACLIP:NexteraPE-PE-GGGGG.fa:2:30:10:2:True \
-	LEADING:6 TRAILING:6 SLIDINGWINDOW:4:20 MINLEN:40 \
+	LEADING:6 TRAILING:6 SLIDINGWINDOW:4:30 MINLEN:50 \
 	-threads 6
 
