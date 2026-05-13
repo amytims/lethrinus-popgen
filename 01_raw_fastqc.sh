@@ -38,7 +38,7 @@ module load singularity/4.1.0-nohost
 
 singularity exec \
 	docker://quay.io/biocontainers/fastqc:0.11.9--hdfd78af_1 \
-	fastqc ${INPUT_DIR}/*.fastq.gz -o ${OUTPUT_DIR}/ -t 24
+	fastqc ${INPUT_DIR}/*.fastq.gz -o ${OUTPUT_DIR}/ -t 48
 
 singularity exec \
 	docker://quay.io/biocontainers/multiqc:1.27.1--pyhdfd78af_0 \
