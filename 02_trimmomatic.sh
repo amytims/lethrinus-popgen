@@ -45,10 +45,14 @@ RAW_READS_DIR=raw_reads
 TRIM_DIR=trimmomatic_output
 
 # create directories for output data
-mkdir ${SCRATCH_DIR}/${TRIM_DIR}
+if ! [ -d ${SCRATCH_DIR}/${TRIM_DIR} ]; then
+    mkdir ${SCRATCH_DIR}/${TRIM_DIR}
+fi
 
-# create symlinks ofr easier viewing
-ln -s ${SCRATCH_DIR}/${TRIM_DIR} ${TRIM_DIR}
+# create symlinks for easier viewing
+if ! [ -d ${TRIM_DIR} ]; then
+    ln -s ${SCRATCH_DIR}/${TRIM_DIR} ${TRIM_DIR}
+fi
 
 echo $SLURM_ARRAY_TASK_ID
 
@@ -92,7 +96,7 @@ echo $FILE1
 
 
 singularity exec \
-    quay.io/biocontainers/trimmomatic:0.40--hdfd78af_0 \
+    docker://quay.io/biocontainers/trimmomatic:0.40--hdfd78af_0 \
 	trimmomatic PE $file1 $file2 $out1 $out1se $out2 $out2se \
 	ILLUMINACLIP:NexteraPE-PE-GGGGG.fa:2:30:10:2:True \
 	LEADING:6 TRAILING:6 SLIDINGWINDOW:4:20 MINLEN:40 \
