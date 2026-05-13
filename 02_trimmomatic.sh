@@ -1,12 +1,12 @@
 #!/bin/bash
 #SBATCH --account=pawsey1228
 #SBATCH --partition=work
-#SBATCH --job-name=02_trimmomatic_test
+#SBATCH --job-name=02_trimmomatic
 #SBATCH --cpus-per-task=6
 #SBATCH --ntasks=1
 #SBATCH --mem=10G
 #SBATCH --time=1:00:00
-#SBATCH --array=1-8:2
+#SBATCH --array=1-240:2
 #SBATCH --output=slurm_logs/02_trimmomatic.%A_%a.out
 #SBATCH --error=slurm_logs/02_trimmomatic.%A_%a.err
 
