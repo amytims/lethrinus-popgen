@@ -1,14 +1,13 @@
 #!/bin/bash
 #SBATCH --account=pawsey1228
 #SBATCH --partition=work
-#SBATCH --job-name=fastqc_test
+#SBATCH --job-name=01_raw_fastqc
 #SBATCH --cpus-per-task=48
 #SBATCH --ntasks=1
 #SBATCH --mem=80G
 #SBATCH --time=6:00:00
 #SBATCH --output=slurm_logs/01_raw_fastqc.%j.out
 #SBATCH --error=slurm_logs/01_raw_fastqc.%j.err
-
 
 ### NOTE: this does one sample per thread at a time
 ### e.g., 6 threads = 6 processed in one go
@@ -27,12 +26,10 @@ MULTIQC_DIR=multiqc_raw
 mkdir ${SCRATCH_DIR}/${OUTPUT_DIR}
 mkdir ${SCRATCH_DIR}/${MULTIQC_DIR}
 
-
 # symlink to working directory for easier viewing
 ln -s ${SCRATCH_DIR}/${INPUT_DIR} ${INPUT_DIR}
 ln -s ${SCRATCH_DIR}/${OUTPUT_DIR} ${OUTPUT_DIR}
 ln -s ${SCRATCH_DIR}/${MULTIQC_DIR} ${MULTIQC_DIR}
-
 
 module load singularity/4.1.0-nohost
 
