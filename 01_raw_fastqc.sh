@@ -2,10 +2,10 @@
 #SBATCH --account=pawsey1228
 #SBATCH --partition=work
 #SBATCH --job-name=fastqc_test
-#SBATCH --cpus-per-task=24
+#SBATCH --cpus-per-task=48
 #SBATCH --ntasks=1
-#SBATCH --mem=40G
-#SBATCH --time=1:00:00
+#SBATCH --mem=80G
+#SBATCH --time=6:00:00
 #SBATCH --output=slurm_logs/01_raw_fastqc.%j.out
 #SBATCH --error=slurm_logs/01_raw_fastqc.%j.err
 
@@ -23,19 +23,16 @@ INPUT_DIR=raw_reads
 OUTPUT_DIR=fastqc_raw
 MULTIQC_DIR=multiqc_raw
 
-# Where to put slurm logs, so they're not clogging the working directory
-SLURM_DIR=slurm_logs
-
 #make directories on /scratch
 mkdir ${SCRATCH_DIR}/${OUTPUT_DIR}
 mkdir ${SCRATCH_DIR}/${MULTIQC_DIR}
-mkdir ${SCRATCH_DIR}/${SLURM_DIR}
+
 
 # symlink to working directory for easier viewing
 ln -s ${SCRATCH_DIR}/${INPUT_DIR} ${INPUT_DIR}
 ln -s ${SCRATCH_DIR}/${OUTPUT_DIR} ${OUTPUT_DIR}
 ln -s ${SCRATCH_DIR}/${MULTIQC_DIR} ${MULTIQC_DIR}
-ln -s ${SCRATCH_DIR}/${SLURM_DIR} ${SLURM_DIR}
+
 
 module load singularity/4.1.0-nohost
 
