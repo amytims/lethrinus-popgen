@@ -40,3 +40,7 @@ singularity exec \
 singularity exec \
 	docker://quay.io/biocontainers/multiqc:1.27.1--pyhdfd78af_0 \
 	multiqc $OUTPUT_DIR -o $MULTIQC_DIR	
+
+# create a file with a list of raw read names in;
+# this is to make the array job in 02_trimmomatic.sh easier
+ls raw_reads/ > filenames.txt
