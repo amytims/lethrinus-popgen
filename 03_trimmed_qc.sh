@@ -45,7 +45,7 @@ module load singularity/4.1.0-nohost
 
 singularity exec \
 	docker://quay.io/biocontainers/fastqc:0.11.9--hdfd78af_1 \
-	fastqc ${TRIM_DIR}/*.fastq.gz -o ${TRIMQC_DIR}/ -t 48
+	fastqc ${TRIM_DIR}/*trim_pe.fastq.gz -o ${TRIMQC_DIR}/ -t 48
 
 singularity exec \
 	docker://quay.io/biocontainers/multiqc:1.27.1--pyhdfd78af_0 \
